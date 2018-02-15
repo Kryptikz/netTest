@@ -2,27 +2,30 @@ import java.net.*;
 import java.io.*;
 public class server {
     public static void start(int port) {
-        Socket MyService;
-        try {
-            MyService = new ServerSocket(port);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        ServerSocket MyService = null;
+        String line;
+        DataInputStream is;
+        PrintStream os;
         Socket clientSocket = null;
         try {
-            clientSocket = MyService.accept();
+            MyService = new ServerSocket(port);
         }
         catch (IOException e) {
             System.out.println(e);
         }
-        while(true) {
-            DataInputStream input;
-            try {
-                input = new DataInputStream(MyService.getInputStream());
+        try {
+            //clientSocket = MyService.accept();
+            //DataInputStream ins = new DataInputStream(clientSocket.getInputStream());
+            while (true) {
+                clientSocket = MyService.accept();
+                DataInputStream ins = new DataInputStream(clientSocket.getInputStream());     
+                //if (ins.readUTF() != null) 
+                System.out.println(ins.readUTF());
             }
-            catch (IOException e) {
-                System.out.println(e);
-            }
-        }   
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
+        
     }
 }
