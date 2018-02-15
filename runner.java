@@ -9,9 +9,7 @@ public class runner {
             String ip = Keyboard.readString();
             System.out.println("What port: ");
             int port = Keyboard.readInt();
-            client.connect(ip, port);
-            System.out.println("What message do you want to send: ");
-            String message = Keyboard.readString();
+            MyClient.connect(ip, port);
         } else 
         if (choice == 1) {
             System.out.println("What port: ");
